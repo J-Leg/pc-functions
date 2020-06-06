@@ -20,7 +20,7 @@ func init() {
 	}
 
 	var ctx context.Context = context.Background()
-	cfg = env.InitConfig(ctx)
+	cfg = env.InitConfig(ctx, initDb(ctx))
 }
 
 // ProcessDaily - Daily process receptor
@@ -29,7 +29,7 @@ func ProcessDaily(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
 	fmt.Println("~~~~~~~ Execute Daily Update ~~~~~~~")
-	core.ExecuteMonthly(cfg)
+	core.Execute(cfg)
 	fmt.Println("\n\n~~~~~~~ Daily Update Complete ~~~~~~~")
 
 	end := time.Now()
