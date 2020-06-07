@@ -14,13 +14,13 @@ import (
 var cfg *env.Config
 
 func init() {
-
-	if err := godotenv.Load(); err != nil {
-		log.Println("No .env override file found. (Running on Google Cloud?)")
+	if err := godotenv.Load(); err == nil {
+		log.Println("Found .env file. Function must have been triggered locally.")
 	}
 
 	var ctx context.Context = context.Background()
 	cfg = env.InitConfig(ctx, initDb(ctx))
+	cfg.LocalEnabled = isLocal()
 }
 
 // ProcessDaily - Daily process receptor
