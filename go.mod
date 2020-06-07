@@ -2,8 +2,6 @@ module github.com/J-Leg/pc-functions
 
 go 1.13
 
-// replace github.com/J-Leg/player-count => ../player-count
-
 require (
 	github.com/GoogleCloudPlatform/functions-framework-go v1.0.1
 	github.com/J-Leg/player-count v1.0.2

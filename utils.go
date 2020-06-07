@@ -22,7 +22,7 @@ func initDb(ctx context.Context) *mongo.Database {
 	dbEnv := os.Getenv("DB_ENV")
 
 	if nodeEnv == "tst" && dbEnv == "prd" {
-		log.Fatalf("No tst phase in DB cluster!\n")
+		log.Fatalf("No tst phase in PRD DB cluster!\n")
 	}
 
 	if dbEnv == "prd" {
