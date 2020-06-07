@@ -15,6 +15,10 @@ func initDb(ctx context.Context) *mongo.Database {
 	nodeEnv := os.Getenv("NODE_ENV")
 	dbEnv := os.Getenv("DB_ENV")
 
+	if nodeEnv == "tst" && dbEnv == "prd" {
+		log.Fatalf("No tst phase in DB cluster!\n")
+	}
+
 	if dbEnv == "prd" {
 		log.Printf("Target: PRD Cluster")
 		dbURI = os.Getenv("PRD_URI")
