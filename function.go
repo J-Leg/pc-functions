@@ -21,6 +21,8 @@ func init() {
 	var ctx context.Context = context.Background()
 	cfg = env.InitConfig(ctx, initDb(ctx))
 	cfg.LocalEnabled = isLocal()
+
+	log.Printf("Local: %t", cfg.LocalEnabled)
 }
 
 // ProcessDaily - Daily process receptor

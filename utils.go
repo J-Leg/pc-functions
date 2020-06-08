@@ -10,8 +10,12 @@ import (
 
 func isLocal() bool {
 	// Check if ENV variable reserved for GCP exists
-	_, ok := os.LookupEnv("ENTRY_POINT")
-	return !ok
+	v, ok := os.LookupEnv("LOCAL")
+	if !ok {
+		return false
+	}
+
+	return (v == "Y")
 }
 
 func initDb(ctx context.Context) *mongo.Database {
