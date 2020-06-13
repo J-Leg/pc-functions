@@ -3,15 +3,14 @@ package f
 import (
 	"context"
 	"fmt"
-	"github.com/J-Leg/player-count/src/core"
-	"github.com/J-Leg/player-count/src/env"
+	"github.com/J-Leg/player-count"
 	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"time"
 )
 
-var cfg *env.Config
+var cfg *pc.Config
 
 func init() {
 	if err := godotenv.Load(); err == nil {
@@ -19,7 +18,7 @@ func init() {
 	}
 
 	var ctx context.Context = context.Background()
-	cfg = env.InitConfig(ctx, initDb(ctx))
+	cfg = pc.InitConfig(ctx, initDb(ctx))
 	cfg.LocalEnabled = isLocal()
 
 	log.Printf("Local: %t", cfg.LocalEnabled)
@@ -31,7 +30,7 @@ func ProcessDaily(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
 	fmt.Println("~~~~~~~ Execute Daily Update ~~~~~~~")
-	core.Execute(cfg)
+	pc.Execute(cfg)
 	fmt.Println("\n\n~~~~~~~ Daily Update Complete ~~~~~~~")
 
 	end := time.Now()
@@ -46,7 +45,7 @@ func ProcessMonthly(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
 	fmt.Println("~~~~~~~ Execute Monthly Update ~~~~~~~")
-	core.ExecuteMonthly(cfg)
+	pc.ExecuteMonthly(cfg)
 	fmt.Println("\n\n~~~~~~~ Monthly Update Complete ~~~~~~~")
 
 	end := time.Now()
@@ -61,7 +60,7 @@ func Recover(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
 	fmt.Println("~~~~~~~ Execute Recovery ~~~~~~~")
-	core.ExecuteRecovery(cfg)
+	pc.ExecuteRecovery(cfg)
 	fmt.Println("~~~~~~~ Daily Update Complete ~~~~~~~")
 
 	end := time.Now()
