@@ -2,10 +2,17 @@ package f
 
 import (
 	"context"
+	"github.com/J-Leg/player-count"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
 	"os"
+)
+
+// Constants
+const (
+	STATSCOL = "population_stats"
+	EXCCOL   = "exceptions"
 )
 
 func isLocal() bool {
@@ -18,7 +25,7 @@ func isLocal() bool {
 	return (v == "Y")
 }
 
-func initDb(ctx context.Context) *mongo.Database {
+func initDb(ctx context.Context) *pc.Collections {
 	var newDb *mongo.Database
 	var clientOptions *options.ClientOptions
 	var dbURI string
@@ -62,5 +69,10 @@ func initDb(ctx context.Context) *mongo.Database {
 		log.Fatalf("[CRITICAL] error connecting client. %s\n", err)
 	}
 
-	return newDb
+	newCollections := pc.Collections{
+		Stats:      newDb.Collection(STATSCOL),
+		Exceptions: newDb.Collection(EXCCOL),
+	}
+
+	return &newCollections
 }
