@@ -29,20 +29,13 @@ func initDb(ctx context.Context) *pc.Collections {
 	var newDb *mongo.Database
 	var clientOptions *options.ClientOptions
 	var dbURI string
-	nodeEnv := os.Getenv("NODE_ENV")
-	dbEnv := os.Getenv("DB_ENV")
+	env := os.Getenv("ENV")
 
-	if nodeEnv == "tst" && dbEnv == "prd" {
-		log.Fatalf("No tst phase in PRD DB cluster!\n")
-	}
-
-	if dbEnv == "prd" {
-		log.Printf("Target: PRD Cluster")
-		dbURI = os.Getenv("PRD_URI")
+	if env == "prd" {
+    log.Printf("Environment: PRD")
 		clientOptions = options.Client().ApplyURI(os.Getenv("PRD_URI"))
-	} else if dbEnv == "tst" || dbEnv == "dev" {
-		log.Printf("Target: Local DB")
-		dbURI = os.Getenv("DEV_URI")
+	} else if env == "tst" || env == "dev" {
+    log.Printf("Environment: DEV")
 		clientOptions = options.Client().ApplyURI(os.Getenv("DEV_URI"))
 	} else {
 		log.Fatalf("[CRITICAL] Undefined phase!\n")
@@ -53,16 +46,7 @@ func initDb(ctx context.Context) *pc.Collections {
 		log.Fatalf("[CRITICAL] Error initialising client. URI: %s\n", dbURI)
 	}
 
-	// To be removed when another DB URI is used
-	if nodeEnv == "prd" {
-		newDb = newClient.Database("games_stats_app")
-		log.Printf("Target: PRD collection\n")
-	} else if nodeEnv == "dev" || nodeEnv == "tst" {
-		newDb = newClient.Database("games_stats_app_TST")
-		log.Printf("Target: DEV collection\n")
-	} else {
-		log.Fatalf("[CRITICAL] Undefined phase!\n")
-	}
+  newDb = newClient.Database("games_stats_app")
 
 	err = newClient.Connect(ctx)
 	if err != nil {
