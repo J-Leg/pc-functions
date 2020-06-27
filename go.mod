@@ -1,4 +1,4 @@
-module github.com/J-Leg/pc-functions
+module github.com/J-Leg/tracula-functions
 
 go 1.13
 

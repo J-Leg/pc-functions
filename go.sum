@@ -52,6 +52,8 @@ github.com/J-Leg/player-count v1.0.0 h1:fg396uZ6bl53hwELXvSFcRBcvCz/qs6SHmyW2DMT
 github.com/J-Leg/player-count v1.0.0/go.mod h1:CsdIyvB2DirIH/EFeGwG57wkFF8S+Qi8yPDuicE+2aQ=
 github.com/J-Leg/player-count v1.0.2 h1:3RrG+bNWx+jO56HzXs0NgGRf+Dwu8Pdbld3XjkS3MT8=
 github.com/J-Leg/player-count v1.0.2/go.mod h1:CsdIyvB2DirIH/EFeGwG57wkFF8S+Qi8yPDuicE+2aQ=
+github.com/J-Leg/tracula v1.0.3 h1:xRPlXqZoSFeZCde8RqUa2M+LwxlFhxTGJ3x5CVc9KJk=
+github.com/J-Leg/tracula v1.0.3/go.mod h1:e18G78YtPQAatSlO/VlDRRHukps1TxJMw9pX2a3rJJ0=
 github.com/J-leg/player-count v1.0.2 h1:PtUOUYAzd3zJc8amAfXOYJPijiI7S34z6+wh3i9stMo=
 github.com/PuerkitoBio/goquery v1.5.1 h1:PSPBGne8NIUWw+/7vFBV+kG2J/5MOjbzc7154OaKCSE=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
