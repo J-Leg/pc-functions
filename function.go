@@ -3,14 +3,14 @@ package f
 import (
 	"context"
 	"fmt"
-	"github.com/J-Leg/player-count"
+	"github.com/J-Leg/tracula"
 	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"time"
 )
 
-var cfg *pc.Config
+var cfg *tracula.Config
 
 func init() {
 	if err := godotenv.Load(); err == nil {
@@ -18,7 +18,7 @@ func init() {
 	}
 
 	var ctx context.Context = context.Background()
-	cfg = pc.InitConfig(ctx, initDb(ctx))
+	cfg = tracula.InitConfig(ctx, initDb(ctx))
 	cfg.LocalEnabled = isLocal()
 
 	log.Printf("Local: %t", cfg.LocalEnabled)
@@ -30,7 +30,7 @@ func ProcessDaily(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
 	fmt.Println("~~~~~~~ Execute Daily Update ~~~~~~~")
-	pc.Execute(cfg)
+	tracula.Execute(cfg)
 	fmt.Println("\n\n~~~~~~~ Daily Update Complete ~~~~~~~")
 
 	end := time.Now()
@@ -45,7 +45,7 @@ func ProcessMonthly(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
 	fmt.Println("~~~~~~~ Execute Monthly Update ~~~~~~~")
-	pc.ExecuteMonthly(cfg)
+	tracula.ExecuteMonthly(cfg)
 	fmt.Println("\n\n~~~~~~~ Monthly Update Complete ~~~~~~~")
 
 	end := time.Now()
@@ -60,7 +60,7 @@ func Recover(w http.ResponseWriter, r *http.Request) {
 	start := time.Now()
 
 	fmt.Println("~~~~~~~ Execute Recovery ~~~~~~~")
-	pc.ExecuteRecovery(cfg)
+	tracula.ExecuteRecovery(cfg)
 	fmt.Println("~~~~~~~ Daily Update Complete ~~~~~~~")
 
 	end := time.Now()
