@@ -68,3 +68,31 @@ func Recover(w http.ResponseWriter, r *http.Request) {
 	executionElapsed := end.Sub(start)
 	fmt.Printf("Total elapsed recovery execution time: %s\n\n", executionElapsed.String())
 }
+
+func Refresh(w http.ResponseWriter, r *http.Request) {
+
+	start := time.Now()
+
+	fmt.Println("~~~~~~~ Execute Refresh ~~~~~~~")
+	tracula.ExecuteRefresh(cfg)
+	fmt.Println("~~~~~~~ Refresh Complete ~~~~~~~")
+
+	end := time.Now()
+
+	executionElapsed := end.Sub(start)
+	fmt.Printf("Total elapsed refresh execution time: %s\n\n", executionElapsed.String())
+}
+
+func Track(w http.ResponseWriter, r *http.Request) {
+
+	start := time.Now()
+
+	fmt.Println("~~~~~~~ Execute Tracker ~~~~~~~")
+	tracula.ExecuteTracker(cfg)
+	fmt.Println("~~~~~~~ Tracker Complete ~~~~~~~")
+
+	end := time.Now()
+
+	executionElapsed := end.Sub(start)
+	fmt.Printf("Total elapsed tracker execution time: %s\n\n", executionElapsed.String())
+}

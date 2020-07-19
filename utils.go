@@ -13,6 +13,7 @@ import (
 const (
 	STATSCOL = "population_stats"
 	EXCCOL   = "exceptions"
+	TRACKCOL = "track_pool"
 )
 
 func isLocal() bool {
@@ -43,7 +44,7 @@ func initDb(ctx context.Context) *tracula.Collections {
 
 	newClient, err := mongo.NewClient(clientOptions)
 	if err != nil {
-		log.Fatalf("[CRITICAL] Error initialising client. URI: %s\n", dbURI)
+		log.Fatalf("[CRITICAL] Error initialising client. URI: %s\n - %s", dbURI, err)
 	}
 
 	newDb = newClient.Database("games_stats_app")
@@ -56,6 +57,7 @@ func initDb(ctx context.Context) *tracula.Collections {
 	newCollections := tracula.Collections{
 		Stats:      newDb.Collection(STATSCOL),
 		Exceptions: newDb.Collection(EXCCOL),
+		TrackPool:  newDb.Collection(TRACKCOL),
 	}
 
 	return &newCollections
