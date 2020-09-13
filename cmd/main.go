@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
-	f "github.com/J-Leg/tracula-functions"
+	f "github.com/j-leg/tracula-functions"
 	"log"
 	"os"
 )

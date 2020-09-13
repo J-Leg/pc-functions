@@ -2,7 +2,7 @@ package f
 
 import (
 	"context"
-	"github.com/J-Leg/tracula"
+	"github.com/j-leg/tracula/config"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
@@ -26,7 +26,7 @@ func isLocal() bool {
 	return (v == "Y")
 }
 
-func initDb(ctx context.Context) *tracula.Collections {
+func initDb(ctx context.Context) *config.Collections {
 	var newDb *mongo.Database
 	var clientOptions *options.ClientOptions
 	var dbURI string
@@ -54,7 +54,7 @@ func initDb(ctx context.Context) *tracula.Collections {
 		log.Fatalf("[CRITICAL] error connecting client. %s\n", err)
 	}
 
-	newCollections := tracula.Collections{
+	newCollections := config.Collections{
 		Stats:      newDb.Collection(STATSCOL),
 		Exceptions: newDb.Collection(EXCCOL),
 		TrackPool:  newDb.Collection(TRACKCOL),
