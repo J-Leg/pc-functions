@@ -1,0 +1,12 @@
+- name: 'gcr.io/cloud-builders/gcloud'
+ args:
+ — functions
+ — deploy
+ — — runtime=go113
+ — — trigger-http
+ — — source=https://source.developers.google.com/projects/playcount-272608/repos/github_j-leg_tracula-functions/moveable-aliases/release
+ — — entry-point=ProcessDaily
+ - - env-vars-file=.env.yaml
+ — daily
+ waitFor: ['_']
+ id: 'deploying-a-serverless-function'
