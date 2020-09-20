@@ -1,7 +1,6 @@
 .env*
-data/*
-logs/*
+local/*
+cmd/cmd
 *.log
 *.exe
 .gloudignore
-cmd/cmd
