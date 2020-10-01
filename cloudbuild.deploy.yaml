@@ -8,7 +8,7 @@ steps:
 
   - name: gcr.io/cloud-builders/gcloud
     id: env-decrypt
-    args: [ 'kms', 'decrypt', '--ciphertext-file=config/.env.yaml.enc', '--plaintext-file=/.env.yaml', '--location=global', '--keyring=traculabuild-keys', '--key=api-key' ]
+    args: [ 'kms', 'decrypt', '--ciphertext-file=.env.yaml.enc', '--plaintext-file=.env.yaml', '--location=global', '--keyring=traculabuild-keys', '--key=api-key' ]
     waitFor: [ 'docker-build' ]
     
   - name: gcr.io/cloud-builders/gcloud
