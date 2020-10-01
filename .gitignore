@@ -1,4 +1,5 @@
-.env*
+.env.yaml
+cmd/.env
 local/*
 cmd/cmd
 *.log
